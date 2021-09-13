@@ -57,7 +57,7 @@ To deploy the demo Badger Strategy in a development environment:
 2. Run Scripts for Deployment
 
 ```
-  brownie run deploy
+  brownie run 1_production_deploy.py
 ```
 
 Deployment will set up a Vault, Controller and deploy your strategy
@@ -66,7 +66,7 @@ Deployment will set up a Vault, Controller and deploy your strategy
 
 ```python
   brownie console
-  deployed = run("deploy")
+  deployed = run("mock_deploy")
 
   ## Takes a minute or so
   Transaction sent: 0xa0009814d5bcd05130ad0a07a894a1add8aa3967658296303ea1f8eceac374a9
