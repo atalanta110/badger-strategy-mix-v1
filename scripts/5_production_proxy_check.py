@@ -101,18 +101,29 @@ def check_vaults_and_strategies(registry, proxyAdmin, authors):
 
     # Get strategies from vaults and check vaults' proxyAdmins
     for vault in vaults:
-        vaultContract = SettV3.at(vault)
-        # get Controller
-        controller = Controller.at(vaultContract.controller())
-        strategies.append(controller.strategies(vaultContract.token()))
-        stratNames.append(vaultContract.name().replace("Badger Sett ", "Strategy "))
-        # Check vault proxyAdmin
-        check_proxy_admin(vault, proxyAdmin, vaultContract.name())
+        try:
+            vaultContract = SettV3.at(vault)
+            # get Controller
+            controller = Controller.at(vaultContract.controller())
+            strategies.append(controller.strategies(vaultContract.token()))
+            stratNames.append(vaultContract.name().replace("Badger Sett ", "Strategy "))
+            # Check vault proxyAdmin
+        
+            check_proxy_admin(vault, proxyAdmin, vaultContract.name())
+        except Exception as error:
+            print("Something went wrong")
+            print(error)
+
 
 
     for strat in strategies:
-    # Check strategies' proxyAdmin
-        check_proxy_admin(strat, proxyAdmin, stratNames[strategies.index(strat)])
+        try:
+            # Check strategies' proxyAdmin
+            check_proxy_admin(strat, proxyAdmin, stratNames[strategies.index(strat)])
+        except Exception as error:
+            print("Something went wrong")
+            print(error)
+
 
 
 def check_proxy_admin(proxy, proxyAdmin, key):
