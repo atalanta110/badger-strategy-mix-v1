@@ -46,7 +46,6 @@ contract MyStrategy is BaseStrategy {
             _keeper,
             _guardian
         );
-
         /// @dev Add config here
         want = _wantConfig[0];
         lpComponent = _wantConfig[1];
@@ -96,12 +95,6 @@ contract MyStrategy is BaseStrategy {
         return protectedTokens;
     }
 
-    /// ===== Permissioned Actions: Governance =====
-    /// @notice Delete if you don't need!
-    function setKeepReward(uint256 _setKeepReward) external {
-        _onlyGovernance();
-    }
-
     /// ===== Internal Core Implementations =====
 
     /// @dev security check to avoid moving tokens that would cause a rugpull, edit based on strat
@@ -146,7 +139,7 @@ contract MyStrategy is BaseStrategy {
 
         /// @notice Keep this in so you get paid!
         (uint256 governancePerformanceFee, uint256 strategistPerformanceFee) =
-            _processPerformanceFees(earned);
+            _processRewardsFees(earned, reward);
 
         // TODO: If you are harvesting a reward token you're not compounding
         // You probably still want to capture fees for it
@@ -185,29 +178,6 @@ contract MyStrategy is BaseStrategy {
     }
 
     /// ===== Internal Helper Functions =====
-
-    /// @dev used to manage the governance and strategist fee, make sure to use it to get paid!
-    function _processPerformanceFees(uint256 _amount)
-        internal
-        returns (
-            uint256 governancePerformanceFee,
-            uint256 strategistPerformanceFee
-        )
-    {
-        governancePerformanceFee = _processFee(
-            want,
-            _amount,
-            performanceFeeGovernance,
-            IController(controller).rewards()
-        );
-
-        strategistPerformanceFee = _processFee(
-            want,
-            _amount,
-            performanceFeeStrategist,
-            strategist
-        );
-    }
 
     /// @dev used to manage the governance and strategist fee on earned rewards, make sure to use it to get paid!
     function _processRewardsFees(uint256 _amount, address _token)

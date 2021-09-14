@@ -32,17 +32,8 @@ abstract contract BaseStrategy is PausableUpgradeable, SettAccessControl {
     using AddressUpgradeable for address;
     using SafeMathUpgradeable for uint256;
 
-    event Withdraw(uint256 amount);
-    event WithdrawAll(uint256 balance);
-    event WithdrawOther(address token, uint256 amount);
-    event SetStrategist(address strategist);
-    event SetGovernance(address governance);
-    event SetController(address controller);
-    event SetWithdrawalFee(uint256 withdrawalFee);
-    event SetPerformanceFeeStrategist(uint256 performanceFeeStrategist);
-    event SetPerformanceFeeGovernance(uint256 performanceFeeGovernance);
+    // Standardized harvest event for UI
     event Harvest(uint256 harvested, uint256 indexed blockNumber);
-    event Tend(uint256 tended);
 
     address public want; // Want: Curve.fi renBTC/wBTC (crvRenWBTC) LP token
 
