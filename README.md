@@ -1,6 +1,6 @@
 # Badger Strategy V1 Brownie Mix
 
-- Video Introduction: https://youtu.be/FVbhgPYW_D0
+- Video Introduction: https://youtu.be/FVbhgPYW_D0 (note follow installation and setup below before starting the video)
 
 - Example Project: https://github.com/Badger-Finance/wBTC-AAVE-Rewards-Farm-Badger-V1-Strategy
 - Full Project Walkthrough: https://www.youtube.com/watch?v=lTb0RFJJx2k
