@@ -139,7 +139,7 @@ contract MyStrategy is BaseStrategy {
 
         /// @notice Keep this in so you get paid!
         (uint256 governancePerformanceFee, uint256 strategistPerformanceFee) =
-            _processRewardsFees(earned, reward);
+            _processRewardsFees(earned, want);
 
         // TODO: If you are harvesting a reward token you're not compounding
         // You probably still want to capture fees for it
