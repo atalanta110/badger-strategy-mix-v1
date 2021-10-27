@@ -147,7 +147,7 @@ def check_parameters(
 
     assert strategy.performanceFeeGovernance() == 1000
     assert strategy.performanceFeeStrategist() == 1000
-    assert strategy.withdrawalFee() == 50
+    assert strategy.withdrawalFee() == 10
 
     assert strategy.keeper() == keeper
     assert vault.keeper() == keeper
